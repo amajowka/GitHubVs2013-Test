@@ -26,8 +26,8 @@
         </div>
         <br />
         <div ng-init="employees=[{name:'Arnaldo', city:'New York', salary:'100000', hiredDate:'2016-01-04'},
-             {name:'Slava', city:'Moscow', salary:'110000', hiredDate:'2015-01-04'},
-             {name:'Kira', city:'Paris', salary:'70000', hiredDate:'2016-01-04'}]">
+             {name:'Slava', city:'Moscow', salary:'110000', hiredDate:'2015-08-01'},
+             {name:'Kira', city:'Paris', salary:'70000', hiredDate:'2016-01-05'}]">
 
             Filter by name: <input type="text" ng-model="nameFilter" />
             <table border="1">
@@ -36,12 +36,14 @@
                         <th>Name</th>
                         <th>City</th>
                         <th>Salary</th>
+                        <th>Hired Date</th>
                     </tr>
                 </thead>
                 <tr ng-repeat="employee in employees | filter:nameFilter |orderBy:'name'">
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.city }}</td>
                     <td>{{ employee.salary | currency }}</td>
+                    <td>{{ employee.hiredDate | date:'yyyy-MM-dd' }}</td>
                 </tr>
             </table>
         </div>
