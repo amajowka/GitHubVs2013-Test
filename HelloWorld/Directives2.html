@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html ng-app xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>More Directives</title>
+    <link href="Styles/Style.css" rel="stylesheet" />
+</head>
+<!--
+    ng-cloak
+    ng-switch
+    ng-class
+    ng-show
+-->
+
+<body
+    ng-init="data={name:'James', isVisible: true, loggedIn: true, status:'navy'}">
+    <div ng-cloak>
+        <div ng-switch on="data.loggedIn">
+            <div ng-switch-when="true" ng-class="data.status">
+                Welcome {{ data.name }}
+            </div>
+            <div ng-switch-default ng-class="data.status">Login</div>
+        </div>
+        <br />
+        <div ng-show="data.isVisible">
+            Name: <input type="text" ng-model="data.name"/>
+        </div>
+        <br />
+        <div ng-init="employees=[{name:'Arnaldo', city:'New York', salary:'100000', hiredDate:'2016-01-04'},
+             {name:'Slava', city:'Moscow', salary:'110000', hiredDate:'2015-01-04'},
+             {name:'Kira', city:'Paris', salary:'70000', hiredDate:'2016-01-04'}]">
+
+            Filter by name: <input type="text" ng-model="nameFilter" />
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="employee in employees | filter:nameFilter |orderBy:'name'">
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.city }}</td>
+                    <td>{{ employee.salary | currency }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+</body>
+</html>
